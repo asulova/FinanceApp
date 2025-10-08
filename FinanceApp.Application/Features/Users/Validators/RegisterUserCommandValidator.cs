@@ -1,8 +1,9 @@
 using FluentValidation;
+using FinanceApp.Application.Features.Users.Commands;
 
-namespace FinanceApp.Application.Users.Validators;
+namespace FinanceApp.Application.Features.Users.Validators;
 
-public class RegisterUserCommandValidator : AbstractValidator<Commands.RegisterUserCommand>
+public class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
 {
     public RegisterUserCommandValidator()
     {

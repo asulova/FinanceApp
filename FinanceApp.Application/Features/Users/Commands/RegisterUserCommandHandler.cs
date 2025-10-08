@@ -3,7 +3,7 @@ using FinanceApp.Domain.ValueObjects;
 using FinanceApp.Domain.Interfaces;
 using MediatR;
 
-namespace FinanceApp.Application.Users.Commands;
+namespace FinanceApp.Application.Features.Users.Commands;
 
 public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Guid>
 {

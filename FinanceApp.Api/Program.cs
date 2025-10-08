@@ -9,7 +9,7 @@ using FinanceApp.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using FinanceApp.Application.Users.Commands;
+using FinanceApp.Application.Features.Users.Commands;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +32,23 @@ builder.Services.AddSingleton<JwtTokenService>();
 
 // Add Controllers
 builder.Services.AddControllers();
+
+// Add CORS for React frontend
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactPolicy", policy =>
+    {
+        policy.WithOrigins(
+            "http://localhost:3000",
+            "https://localhost:3000",
+            "http://localhost:65262",
+            "https://localhost:65262"
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+    });
+});
 
 // Add Microsoft's built-in OpenAPI
 builder.Services.AddOpenApi();
@@ -79,6 +96,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Use CORS before authentication
+app.UseCors("ReactPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();

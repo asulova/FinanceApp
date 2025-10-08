@@ -1,5 +1,6 @@
-using FinanceApp.Application.Users.Commands;
-using FinanceApp.Application.Users.Queries;
+using FinanceApp.Application.Features.Users.Commands;
+using FinanceApp.Application.Features.Users.Queries;
+using FinanceApp.Application.Features.Authentication.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using FinanceApp.Api.Services;
@@ -45,5 +46,21 @@ public class UsersController : ControllerBase
         if (user == null)
             return NotFound();
         return Ok(user);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("list")]
+    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    {
+        var users = await _mediator.Send(new GetAllUsersQuery(), cancellationToken);
+        // Project to only the fields needed by the UI
+        var result = users.Select(u => new
+        {
+            u.Id,
+            u.FirstName,
+            u.LastName,
+            u.Email
+        });
+        return Ok(result);
     }
 }

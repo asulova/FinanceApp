@@ -20,6 +20,21 @@ The project demonstrates the use of CQRS, the Mediator pattern (MediatR), SOLID 
 - Axios (API calls)  
 - TailwindCSS or Material UI (for styling)  
 - Jest / React Testing Library (unit tests)  
+- FinanceApp.UI/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── pages/         # Route components
+│   ├── layouts/       # Layout wrappers
+│   ├── hooks/         # Custom hooks
+│   ├── services/      # API integration
+│   ├── stores/        # State management
+│   ├── utils/         # Helper functions
+│   ├── types/         # TypeScript definitions
+│   └── test/          # Test setup
+├── package.json       # Dependencies and scripts
+├── vite.config.js     # Vite configuration
+├── tailwind.config.js # Custom design system
+└── tsconfig.json      # TypeScript config
 
 **Database:**  
 - SQL Server (default)  

@@ -2,7 +2,7 @@ using FinanceApp.Domain.ValueObjects;
 using FinanceApp.Domain.Interfaces;
 using MediatR;
 
-namespace FinanceApp.Application.Users.Commands;
+namespace FinanceApp.Application.Features.Authentication.Commands;
 
 public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, Guid?>
 {

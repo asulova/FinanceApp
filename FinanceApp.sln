@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11018.127 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceApp.Domain", "FinanceApp.Domain\FinanceApp.Domain.csproj", "{2B60A5BC-CF4E-4E8C-BBD5-96D3A2671FDC}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceApp.Api", "FinanceApp.Api\FinanceApp.Api.csproj", "{530BE31B-04D8-45BF-AA8B-2B11BDEA6D9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceApp.Tests", "FinanceApp.Tests\FinanceApp.Tests.csproj", "{C972B9CD-ED61-4EA0-A8D1-F73FCBF34F1C}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "FinanceApp.UI", "FinanceApp.UI\FinanceApp.UI.esproj", "{1C54CFBE-881B-40D5-AA05-077E1B66B687}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,24 @@ Global
 		{C972B9CD-ED61-4EA0-A8D1-F73FCBF34F1C}.Release|x64.Build.0 = Release|Any CPU
 		{C972B9CD-ED61-4EA0-A8D1-F73FCBF34F1C}.Release|x86.ActiveCfg = Release|Any CPU
 		{C972B9CD-ED61-4EA0-A8D1-F73FCBF34F1C}.Release|x86.Build.0 = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|x64.Build.0 = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|x86.Build.0 = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|x64.ActiveCfg = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|x64.Build.0 = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|x64.Deploy.0 = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|x86.Build.0 = Release|Any CPU
+		{1C54CFBE-881B-40D5-AA05-077E1B66B687}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
