@@ -16,8 +16,15 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, G
 
     public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
+        var email = new Email(request.Email);
+        var exists = await _unitOfWork.Users.ExistsAsync(email, cancellationToken);
+        if (exists)
+        {
+            throw new Domain.Exceptions.DuplicateEmailException(request.Email);
+        }
+
         var user = new User(
-            new Email(request.Email),
+            email,
             request.FirstName,
             request.LastName,
             request.Password // In production, hash the password before storing!

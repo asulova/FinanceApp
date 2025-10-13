@@ -19,7 +19,7 @@ public class UserRepository : IUserRepository
         => await _context.Users.FindAsync(new object[] { id }, cancellationToken);
 
     public async Task<User?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
-        => await _context.Users.FirstOrDefaultAsync(u => u.Email.Value == email.Value, cancellationToken);
+        => await _context.Users.FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
 
     public async Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken = default)
         => await _context.Users.ToListAsync(cancellationToken);
@@ -46,5 +46,5 @@ public class UserRepository : IUserRepository
     }
 
     public async Task<bool> ExistsAsync(Email email, CancellationToken cancellationToken = default)
-        => await _context.Users.AnyAsync(u => u.Email.Value == email.Value, cancellationToken);
+        => await _context.Users.AnyAsync(u => u.Email == email, cancellationToken);
 }

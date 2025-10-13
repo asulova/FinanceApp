@@ -52,15 +52,11 @@ public class UsersController : ControllerBase
     [HttpGet("list")]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
-        var users = await _mediator.Send(new GetAllUsersQuery(), cancellationToken);
-        // Project to only the fields needed by the UI
-        var result = users.Select(u => new
-        {
-            u.Id,
-            u.FirstName,
-            u.LastName,
-            u.Email
-        });
-        return Ok(result);
+        var result = await _mediator.Send(new GetAllUsersQuery(), cancellationToken);
+       
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result.Data);
     }
 }

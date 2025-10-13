@@ -3,13 +3,12 @@ using FinanceApp.Infrastructure.Repositories;
 using FinanceApp.Infrastructure.UnitOfWork;
 using FinanceApp.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MediatR;
-using FluentValidation;
 using FinanceApp.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using FinanceApp.Application.Features.Users.Commands;
+using FinanceApp.Application.DependencyInjection;
+using FinanceApp.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,11 +20,8 @@ builder.Services.AddDbContext<FinanceAppDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-// Register MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommand).Assembly));
-
-// Register FluentValidation (no deprecated package)
-builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserCommand>();
+// Register Application Layer services (MediatR, AutoMapper, etc.)
+builder.Services.AddApplicationServices();
 
 // Register JwtTokenService
 builder.Services.AddSingleton<JwtTokenService>();
@@ -87,6 +83,9 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+
+// Use custom exception handling middleware
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
