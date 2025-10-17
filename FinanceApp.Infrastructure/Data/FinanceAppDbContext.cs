@@ -11,6 +11,8 @@ public class FinanceAppDbContext : DbContext
     }
 
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Transaction> Transactions { get; set; } = null!;
+    public DbSet<Category> Categories { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,6 +31,26 @@ public class FinanceAppDbContext : DbContext
             entity.Property(u => u.PasswordHash).IsRequired();
             entity.Property(u => u.CreatedAt).IsRequired();
             entity.Property(u => u.IsActive).IsRequired();
+        });
+
+        // Configure Category entity
+        modelBuilder.Entity<Category>(entity =>
+        {
+            entity.HasKey(c => c.Id);
+            entity.Property(c => c.Name).IsRequired();
+        });
+
+        // Configure Transaction entity
+        modelBuilder.Entity<Transaction>(entity =>
+        {
+            entity.HasKey(t => t.Id);
+            entity.Property(t => t.Amount).IsRequired().HasPrecision(18, 2);            
+            entity.Property(t => t.Date).IsRequired();
+            entity.Property(t => t.Description);
+            entity.HasOne(t => t.Category)
+                  .WithMany()
+                  .HasForeignKey(t => t.CategoryId)
+                  .OnDelete(DeleteBehavior.Restrict);
         });
     }
 }

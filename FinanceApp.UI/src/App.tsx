@@ -3,6 +3,7 @@ import RegisterPage from './features/users/pages/RegisterPage';
 import HomePage from './features/home/HomePage';
 import UsersListPage from './features/users/pages/UsersListPage';
 import { AppBar, Toolbar, Typography, Button, Box, Container, Paper } from '@mui/material';
+import { AddTransactionForm } from './features/transactions/pages/AddTransactionPage';
 import './App.css';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             </Typography>
             <Button color="inherit" component={Link} to="/">Home</Button>
             <Button color="inherit" component={Link} to="/register">Register</Button>
+            <Button color="inherit" component={Link} to="/transactions/add">Add Transaction</Button>
             {!isLoggedIn && (
               <Button color="inherit" component={Link} to="/login">Login</Button>
             )}
@@ -60,6 +62,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPageWrapper onLogin={handleLogin} />} />
           <Route path="/users" element={<ProtectedUsersListPage />} />
+          <Route path="/transactions/add" element={<AddTransactionForm />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Box>

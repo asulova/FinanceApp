@@ -6,5 +6,6 @@ namespace FinanceApp.Domain.Interfaces;
 public interface IUnitOfWork
 {
     IUserRepository Users { get; }
+    ITransactionRepository Transactions { get; }
     Task<int> CommitAsync(CancellationToken cancellationToken = default);
 }

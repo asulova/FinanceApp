@@ -12,10 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Constants\" />
+    <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Interfaces\" />
-    <Folder Include="DTOs\" />
   </ItemGroup>
 
   <PropertyGroup>
