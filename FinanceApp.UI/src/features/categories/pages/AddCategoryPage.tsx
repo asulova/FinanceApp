@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
 import { addCategory } from '../api/categoryApi';
@@ -32,8 +33,13 @@ export const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ onCategoryAdde
       setName('');
       setDescription('');
       if (onCategoryAdded) onCategoryAdded(category);
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to add category.');
+    } catch (err) {
+        const axiosError = err as AxiosError<{ message?: string }>;
+        if (axiosError.response?.data?.message) {
+            setError(axiosError.response.data.message);
+        } else {
+            setError('Failed to add category.');
+        }
     } finally {
       setLoading(false);
     }

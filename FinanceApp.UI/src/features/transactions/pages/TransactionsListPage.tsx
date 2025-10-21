@@ -57,9 +57,8 @@ export const TransactionsListPage: React.FC = () => {
           </Typography>
           <Button
             variant="contained"
-                      color="primary"
-                      onClick={handleAddTransaction}
-          >
+            color="primary"
+            onClick={handleAddTransaction}>
             Add Transaction
           </Button>
         </Box>

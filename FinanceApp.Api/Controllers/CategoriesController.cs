@@ -19,7 +19,6 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpPost]
-    [AllowAnonymous]
 
     public async Task<IActionResult> Create([FromBody] CreateCategoryCommand command, CancellationToken cancellationToken)
     {
@@ -28,7 +27,6 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpGet]
-    [AllowAnonymous]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
         var categories = await _mediator.Send(new GetAllCategoriesQuery(), cancellationToken);
