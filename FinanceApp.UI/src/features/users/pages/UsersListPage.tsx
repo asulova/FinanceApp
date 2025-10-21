@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, CircularProgress, Alert } from '@mui/material';
 import { getUsersList } from '../../users/api/userApi';
-
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import type { User } from '../../users/types';
 
 const UsersListPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);

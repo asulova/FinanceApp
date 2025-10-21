@@ -4,7 +4,10 @@ import HomePage from './features/home/HomePage';
 import UsersListPage from './features/users/pages/UsersListPage';
 import { AppBar, Toolbar, Typography, Button, Box, Container, Paper } from '@mui/material';
 import { AddTransactionForm } from './features/transactions/pages/AddTransactionPage';
+import { TransactionsListPage } from './features/transactions/pages/TransactionsListPage';
 import './App.css';
+import { AddCategoryForm } from './features/categories/pages/AddCategoryPage';
+import { CategoriesListPage } from './features/categories/pages/CategoriesListPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(() => {
@@ -43,15 +46,17 @@ function App() {
               Personal Finances
             </Typography>
             <Button color="inherit" component={Link} to="/">Home</Button>
-            <Button color="inherit" component={Link} to="/register">Register</Button>
-            <Button color="inherit" component={Link} to="/transactions/add">Add Transaction</Button>
-            {!isLoggedIn && (
-              <Button color="inherit" component={Link} to="/login">Login</Button>
-            )}
-            {isLoggedIn && (
+            {isLoggedIn ? (
               <>
+                <Button color="inherit" component={Link} to="/transactions">Transactions</Button>
+                <Button color="inherit" component={Link} to="/categories">Categories</Button>
                 <Button color="inherit" component={Link} to="/users">Users</Button>
                 <Button color="inherit" onClick={handleLogout}>Logout</Button>
+              </>
+            ) : (
+              <>
+                <Button color="inherit" component={Link} to="/register">Register</Button>
+                <Button color="inherit" component={Link} to="/login">Login</Button>
               </>
             )}
           </Toolbar>
@@ -62,14 +67,16 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPageWrapper onLogin={handleLogin} />} />
           <Route path="/users" element={<ProtectedUsersListPage />} />
+          <Route path="/transactions" element={<TransactionsListPage />} />
           <Route path="/transactions/add" element={<AddTransactionForm />} />
+          <Route path="/categories" element={<CategoriesListPage />} />
+          <Route path="/categories/add" element={<AddCategoryForm />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Box>
     </Box>
   );
 }
-
 
 // Wrapper for LoginPage to handle redirect after login
 import LoginPage from './features/authentication/pages/LoginPage';

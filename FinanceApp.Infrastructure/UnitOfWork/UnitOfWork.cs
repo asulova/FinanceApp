@@ -11,12 +11,14 @@ public class UnitOfWork : IUnitOfWork
     private readonly FinanceAppDbContext _context;
     public IUserRepository Users { get; }
     public ITransactionRepository Transactions { get; }
+    public ICategoryRepository Categories { get; }
 
     public UnitOfWork(FinanceAppDbContext context)
     {
         _context = context;
         Users = new UserRepository(_context);
         Transactions = new TransactionRepository(_context);
+        Categories = new CategoryRepository(_context);
     }
 
     public async Task<int> CommitAsync(CancellationToken cancellationToken = default)

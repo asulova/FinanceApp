@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceApp.Tests", "Finance
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "FinanceApp.UI", "FinanceApp.UI\FinanceApp.UI.esproj", "{1C54CFBE-881B-40D5-AA05-077E1B66B687}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoRideDocs", "EcoRideDocs\EcoRideDocs.csproj", "{C3BF6637-BFA6-478A-A1BF-5FE48E2DE0E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceApp.Docs", "FinanceApp.Docs\FinanceApp.Docs.csproj", "{C3BF6637-BFA6-478A-A1BF-5FE48E2DE0E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,9 +13,9 @@ namespace FinanceApp.Application.DependencyInjection
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
-            services.AddValidatorsFromAssemblyContaining<RegisterUserCommand>();
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            services.AddAutoMapper(cfg => { }, typeof(ApplicationServiceRegistration).Assembly);
+            services.AddAutoMapper(cfg => { }, Assembly.GetExecutingAssembly());
 
             // Register MediatR pipeline behaviors
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
