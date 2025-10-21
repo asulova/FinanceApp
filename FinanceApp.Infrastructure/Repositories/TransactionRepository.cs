@@ -20,9 +20,6 @@ namespace FinanceApp.Infrastructure.Repositories
         public async Task<Transaction?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
             => await _context.Transactions.FindAsync(new object[] { id }, cancellationToken);
 
-        public async Task<IEnumerable<Transaction>> GetAllAsync(CancellationToken cancellationToken = default)
-            => await _context.Transactions.ToListAsync(cancellationToken);
-
         public Task<Transaction> AddAsync(Transaction transaction, CancellationToken cancellationToken = default)
         {
             _context.Transactions.Add(transaction);
@@ -42,6 +39,22 @@ namespace FinanceApp.Infrastructure.Repositories
             {
                 _context.Transactions.Remove(transaction);
             }
+        }
+        
+        public async Task<List<Transaction>> GetPagedSortedAsync(Guid userId, int pageNumber, int pageSize, CancellationToken cancellationToken = default)
+        {
+            return await _context.Transactions
+                .Include(t => t.Category)
+                .Where(t => t.UserId == userId)
+                .OrderByDescending(t => t.Date)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+        }
+        
+        public async Task<int> CountByUserAsync(Guid userId, CancellationToken cancellationToken = default)
+        {
+            return await _context.Transactions.CountAsync(t => t.UserId == userId, cancellationToken);
         }
     }
 }

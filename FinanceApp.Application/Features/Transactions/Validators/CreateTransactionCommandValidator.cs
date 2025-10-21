@@ -19,7 +19,7 @@ public class CreateTransactionCommandValidator : AbstractValidator<CreateTransac
 
         RuleFor(x => x.Type)
             .NotEmpty().WithMessage("Type is required.")
-            .Must(type => type == "Income" || type == "Expense")
-            .WithMessage("Type must be either 'Income' or 'Expense'.");
+            .Must(type => type == "INCOME" || type == "EXPENSE")
+            .WithMessage("Type must be either 'INCOME' or 'EXPENSE'.");
     }
 }

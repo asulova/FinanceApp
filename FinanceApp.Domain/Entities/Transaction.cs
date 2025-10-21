@@ -11,7 +11,7 @@ namespace FinanceApp.Domain.Entities
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
         public string Type { get; set; } = string.Empty; // Use TransactionTypes.INCOME or TransactionTypes.EXPENSE
-        // Optionally, add UserId if transactions are user-specific
-        // public int UserId { get; set; }
+        public Guid UserId { get; set; }
+        public User? User { get; set; }
     }
 }

@@ -44,9 +44,14 @@ public class FinanceAppDbContext : DbContext
         modelBuilder.Entity<Transaction>(entity =>
         {
             entity.HasKey(t => t.Id);
-            entity.Property(t => t.Amount).IsRequired().HasPrecision(18, 2);            
+            entity.Property(t => t.Amount).IsRequired().HasPrecision(18, 2);
             entity.Property(t => t.Date).IsRequired();
             entity.Property(t => t.Description);
+            entity.Property(t => t.UserId).IsRequired();
+            entity.HasOne(t => t.User)
+                  .WithMany()
+                  .HasForeignKey(t => t.UserId)
+                  .OnDelete(DeleteBehavior.Cascade);
             entity.HasOne(t => t.Category)
                   .WithMany()
                   .HasForeignKey(t => t.CategoryId)
