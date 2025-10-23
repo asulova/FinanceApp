@@ -8,6 +8,7 @@ import { TransactionsListPage } from './features/transactions/pages/Transactions
 import './App.css';
 import { AddCategoryForm } from './features/categories/pages/AddCategoryPage';
 import { CategoriesListPage } from './features/categories/pages/CategoriesListPage';
+import { EditCategoryPage } from './features/categories/pages/EditCategoryPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(() => {
@@ -71,6 +72,7 @@ function App() {
           <Route path="/transactions/add" element={<AddTransactionForm />} />
           <Route path="/categories" element={<CategoriesListPage />} />
           <Route path="/categories/add" element={<AddCategoryForm />} />
+          <Route path="/categories/edit/:id" element={<EditCategoryPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Box>

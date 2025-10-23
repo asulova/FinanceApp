@@ -46,4 +46,8 @@ public class CategoryRepository : ICategoryRepository
 
     public async Task<bool> ExistsByNameAsync(string name, CancellationToken cancellationToken = default)
         => await _context.Categories.AnyAsync(c => c.Name == name, cancellationToken);
+
+    public async Task<bool> HasAssignedTransactionsAsync(int categoryId, CancellationToken cancellationToken = default)
+        => await _context.Transactions.AnyAsync(t => t.CategoryId == categoryId, cancellationToken);
+    
 }

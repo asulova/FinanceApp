@@ -16,19 +16,15 @@ export const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ onCategoryAdde
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  const token = localStorage.getItem('token');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    if (!name.trim()) {
-      setError('Category name is required.');
-      return;
-    }
     setLoading(true);
     try {
-      const category = await addCategory({ name, description });
+      const category = await addCategory({ name, description }, token as string);
       setSuccess('Category added successfully!');
       setName('');
       setDescription('');
@@ -47,8 +43,8 @@ export const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ onCategoryAdde
 
   if (!token) {
     return (
-      <Box sx={{ maxWidth: 400, mx: 'auto', mt: 10 }}>
-        <Paper elevation={6} sx={{ p: 4, borderRadius: 4 }}>
+      <Box sx={{ maxWidth: 600, mx: 'auto', mt: 10 }}>
+        <Paper elevation={6} sx={{ p: 6, borderRadius: 4 }}>
           <Typography variant="h6" color="error" align="center">
             Please login to add a category.
           </Typography>
@@ -62,7 +58,7 @@ export const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ onCategoryAdde
 
   return (
     <Box sx={{ maxWidth: 600, mx: 'auto', mt: 6 }}>
-      <Paper elevation={3} sx={{ p: 6, borderRadius: 3 }}>
+      <Paper elevation={6} sx={{ p: 6, borderRadius: 4 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
           <Typography variant="h6" gutterBottom>
             Add New Category
