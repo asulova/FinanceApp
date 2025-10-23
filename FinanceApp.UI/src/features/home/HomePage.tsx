@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Box, Typography, Button, Container, Stack, Paper } from '@mui/material';
+import { Box, Typography, Button, Stack, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SavingsOutlinedIcon from '@mui/icons-material/SavingsOutlined';
 
 const HomePage: React.FC = () => {
   return (
-    <Box sx={{ minHeight: '80vh', bgcolor: 'linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)', py: 8 }}>
-      <Container maxWidth="sm">
-        <Paper elevation={6} sx={{ p: 5, borderRadius: 4, textAlign: 'center', background: 'rgba(255,255,255,0.95)' }}>
+    <Box sx={{ bgcolor: 'linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)', minHeight: '100vh' }}>
+      <Box sx={{ maxWidth: 600, mx: 'auto', mt: 3, minHeight: 500, display: 'flex', alignItems: 'center' }}>
+        <Paper elevation={6} sx={{ p: 6, borderRadius: 4, textAlign: 'center', background: 'rgba(255,255,255,0.95)', width: '100%' }}>
           <SavingsOutlinedIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
           <Typography variant="h3" fontWeight={700} color="primary.dark" gutterBottom>
             Welcome to Personal Finances
@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
             </Button>
           </Stack>
         </Paper>
-      </Container>
+      </Box>
     </Box>
   );
 };

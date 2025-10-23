@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, CircularProgress, Alert } from '@mui/material';
 import { getUsersList } from '../../users/api/userApi';
-
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import type { User } from '../../users/types';
 
 const UsersListPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -34,8 +28,8 @@ const UsersListPage: React.FC = () => {
   }, []);
 
   return (
-    <Box sx={{ maxWidth: 800, mx: 'auto', mt: 6 }}>
-      <Paper elevation={6} sx={{ p: 4, borderRadius: 4 }}>
+    <Box sx={{ maxWidth: 600, mx: 'auto', mt: 6 }}>
+      <Paper elevation={6} sx={{ p: 6, borderRadius: 4 }}>
         <Typography variant="h4" fontWeight={700} color="primary.dark" align="center" mb={3}>
           Users List
         </Typography>

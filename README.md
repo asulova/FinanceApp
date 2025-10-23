@@ -20,21 +20,22 @@ The project demonstrates the use of CQRS, the Mediator pattern (MediatR), SOLID 
 - Axios (API calls)  
 - TailwindCSS or Material UI (for styling)  
 - Jest / React Testing Library (unit tests)  
-- FinanceApp.UI/
-├── src/
-│   ├── components/     # Reusable UI components
-│   ├── pages/         # Route components
-│   ├── layouts/       # Layout wrappers
-│   ├── hooks/         # Custom hooks
-│   ├── services/      # API integration
-│   ├── stores/        # State management
-│   ├── utils/         # Helper functions
-│   ├── types/         # TypeScript definitions
-│   └── test/          # Test setup
-├── package.json       # Dependencies and scripts
-├── vite.config.js     # Vite configuration
-├── tailwind.config.js # Custom design system
-└── tsconfig.json      # TypeScript config
+
+FinanceApp.UI/
+- src/
+  - components: Reusable UI components
+  - pages: Route components
+  - layouts: Layout wrappers
+  - hooks: Custom hooks
+  - services: API integration
+  - stores: State management
+  - utils: Helper functions
+  - types: TypeScript definitions
+  - test: Test setup
+- package.json: Dependencies and scripts
+- vite.config.js: Vite configuration
+- tailwind.config.js: Custom design system
+- tsconfig.json: TypeScript config
 
 **Database:**  
 - SQL Server (default)  
@@ -53,17 +54,17 @@ The project demonstrates the use of CQRS, the Mediator pattern (MediatR), SOLID 
 2. **Dashboard**  
    - Shows total balance, income vs expenses  
    - React: basic charts (Recharts or Chart.js)  
-   - Backend: aggregates transactions  
+   - Backend: aggregates transactions
 
-3. **Transactions (CQRS in action)**  
+3. **Categories**  
+   - Add, Edit, Delete categories  
+   - Assign category to transaction
+
+4. **Transactions (CQRS in action)**  
    - Create Transaction (Income / Expense)  
    - List Transactions (by month, category)  
    - Update Transaction  
    - Delete Transaction  
-
-4. **Categories**  
-   - Add, Edit, Delete categories  
-   - Assign category to transaction  
 
 5. **Reports**  
    - Monthly income vs expenses chart  
@@ -72,6 +73,7 @@ The project demonstrates the use of CQRS, the Mediator pattern (MediatR), SOLID 
 ---
 
 ## Project Structure  
+
 
 ### Backend (`/FinanceApp.Api`)
 ```
@@ -85,9 +87,9 @@ FinanceApp.Api/
 │── Tests/
 ```
 
-### Frontend (`/finance-app-ui`)
+### Frontend (`/FinanceApp.UI`)
 ```
-finance-app-ui/
+FinanceApp.UI/
 │── src/
 │   ├── components/
 │   ├── pages/

@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using FinanceApp.Application.DependencyInjection;
 using FinanceApp.Api.Middleware;
+using FinanceApp.Application.Common.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddDbContext<FinanceAppDbContext>(options =>
 
 // Register repositories and unit of work
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Register Application Layer services (MediatR, AutoMapper, etc.)
@@ -26,8 +28,15 @@ builder.Services.AddApplicationServices();
 // Register JwtTokenService
 builder.Services.AddSingleton<JwtTokenService>();
 
+
 // Add Controllers
 builder.Services.AddControllers();
+
+// Register IHttpContextAccessor for accessing HttpContext in services
+builder.Services.AddHttpContextAccessor();
+
+// Register CurrentUserService for retrieving the current user's ID
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 // Add CORS for React frontend
 builder.Services.AddCors(options =>
