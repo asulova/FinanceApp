@@ -184,7 +184,7 @@ export const CategoriesListPage: React.FC = () => {
                         </Button>
                         <Button
                           color="error"
-                          variant="Outlined"
+                          variant="outlined"
                           size="small"
                           startIcon={<DeleteIcon />}
                           onClick={() => handleDeleteClick(cat.id)}
