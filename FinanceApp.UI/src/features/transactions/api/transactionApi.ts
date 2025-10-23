@@ -18,11 +18,11 @@ export async function createTransaction(
 }
 
 
-export const fetchTransactions = async (
+export async function fetchTransactions(
   pageNumber: number,
   pageSize: number,
   token: string
-): Promise<PagedResult<Transaction>> => {
+): Promise<PagedResult<Transaction>> {
   const response = await api.get<PagedResult<Transaction>>(
     `${API_URL}/api/transactions`,
     {

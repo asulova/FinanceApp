@@ -28,8 +28,8 @@ const UsersListPage: React.FC = () => {
   }, []);
 
   return (
-    <Box sx={{ maxWidth: 800, mx: 'auto', mt: 6 }}>
-      <Paper elevation={6} sx={{ p: 4, borderRadius: 4 }}>
+    <Box sx={{ maxWidth: 600, mx: 'auto', mt: 6 }}>
+      <Paper elevation={6} sx={{ p: 6, borderRadius: 4 }}>
         <Typography variant="h4" fontWeight={700} color="primary.dark" align="center" mb={3}>
           Users List
         </Typography>

@@ -15,6 +15,7 @@ export const AddTransactionForm: React.FC = () => {
     date: '',
     description: '',
     categoryId: 0,
+    categoryName: '',
     type: 'EXPENSE',
   };
 
@@ -30,7 +31,7 @@ export const AddTransactionForm: React.FC = () => {
 
   useEffect(() => {
     if (!token) return;
-    getCategories()
+    getCategories(token)
       .then(setCategories)
       .catch(() => setCategoriesError('Failed to load categories.'))
       .finally(() => setCategoriesLoading(false));

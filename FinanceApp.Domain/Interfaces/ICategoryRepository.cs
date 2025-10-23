@@ -13,4 +13,8 @@ public interface ICategoryRepository
     Task UpdateAsync(Category category, CancellationToken cancellationToken = default);
     Task DeleteAsync(int id, CancellationToken cancellationToken = default);
     Task<bool> ExistsByNameAsync(string name, CancellationToken cancellationToken = default);
+    /// <summary>
+    /// Checks if the category has any assigned transactions.
+    /// </summary>
+    Task<bool> HasAssignedTransactionsAsync(int categoryId, CancellationToken cancellationToken = default);
 }
