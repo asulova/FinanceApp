@@ -18,39 +18,37 @@ namespace FinanceApp.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(Budget budget)
+        public async Task AddAsync(Budget budget, CancellationToken cancellationToken = default)
         {
-            await _context.Budgets.AddAsync(budget);
-            await _context.SaveChangesAsync();
+            await _context.Budgets.AddAsync(budget, cancellationToken);
         }
 
-        public async Task UpdateAsync(Budget budget)
+        public Task UpdateAsync(Budget budget, CancellationToken cancellationToken = default)
         {
             _context.Budgets.Update(budget);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
 
-        public async Task DeleteAsync(int budgetId)
+        public async Task DeleteAsync(int budgetId, CancellationToken cancellationToken = default)
         {
-            var budget = await _context.Budgets.FindAsync(budgetId);
+            var budget = await _context.Budgets.FindAsync([budgetId], cancellationToken);
             if (budget != null)
             {
                 _context.Budgets.Remove(budget);
-                await _context.SaveChangesAsync();
             }
         }
 
-        public async Task<Budget> GetByIdAsync(int budgetId)
+        public async Task<Budget?> GetByIdAsync(int budgetId, CancellationToken cancellationToken = default)
         {
-            return await _context.Budgets.FindAsync(budgetId);
+            return await _context.Budgets.FindAsync([budgetId], cancellationToken);
         }
 
-        public async Task<IEnumerable<Budget>> GetByUserIdAsync(Guid userId)
+        public async Task<IEnumerable<Budget>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken = default)
         {
             return await _context.Budgets
                 .AsNoTracking()
                 .Where(b => b.UserId == userId)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
     }
 }

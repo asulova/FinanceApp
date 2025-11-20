@@ -13,9 +13,6 @@ namespace FinanceApp.Application.Features.Budgets.Validators
 
             RuleFor(x => x.PeriodStart)
                 .LessThan(x => x.PeriodEnd).WithMessage("PeriodStart must be before PeriodEnd.");
-
-            RuleFor(x => x.PeriodEnd)
-                .GreaterThan(x => x.PeriodStart).WithMessage("PeriodEnd must be after PeriodStart.");
         }
     }
 }

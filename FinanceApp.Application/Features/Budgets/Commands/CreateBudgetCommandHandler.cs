@@ -35,10 +35,9 @@ namespace FinanceApp.Application.Features.Budgets.Commands
             };
             await _budgetRepository.AddAsync(budget);
             // Defensive: Check if Id is set, otherwise return failure
-            if (budget.Id > 0)
-                return Result<int>.SuccessResult(budget.Id, "Budget created successfully.");
-            else
-                return Result<int>.Failure("Failed to create budget.");
+            return budget.Id > 0
+                ? Result<int>.SuccessResult(budget.Id, "Budget created successfully.")
+                : Result<int>.Failure("Failed to create budget.");
         }
     }
 }

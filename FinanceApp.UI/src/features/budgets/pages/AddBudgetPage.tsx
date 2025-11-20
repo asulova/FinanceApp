@@ -13,8 +13,7 @@ import { Box, TextField, Button, Typography, Paper, Alert, CircularProgress } fr
 const initialForm: Omit<Budget, 'id'> = {
   amount: 0,
   periodStart: '',
-  periodEnd: '',
-  userId: 0 // This can be set by backend or context if needed
+  periodEnd: ''
 };
 
 export const AddBudgetForm: React.FC = () => {

@@ -9,10 +9,10 @@ namespace FinanceApp.Domain.Interfaces
     // DIP: Dependency Inversion Principle - consumers depend on this abstraction, not concrete implementations
     public interface IBudgetRepository
     {
-        Task AddAsync(Budget budget); // SRP: Handles only adding a budget
-        Task UpdateAsync(Budget budget); // SRP: Handles only updating a budget
-        Task DeleteAsync(int budgetId); // SRP: Handles only deleting a budget
-        Task<Budget> GetByIdAsync(int budgetId); // SRP: Handles only retrieving a budget by ID
-        Task<IEnumerable<Budget>> GetByUserIdAsync(Guid userId); // SRP: Handles only retrieving budgets for a user
+        Task AddAsync(Budget budget, CancellationToken cancellationToken = default); // SRP: Handles only adding a budget
+        Task UpdateAsync(Budget budget, CancellationToken cancellationToken = default); // SRP: Handles only updating a budget
+        Task DeleteAsync(int budgetId, CancellationToken cancellationToken = default); // SRP: Handles only deleting a budget
+        Task<Budget?> GetByIdAsync(int budgetId, CancellationToken cancellationToken = default); // SRP: Handles only retrieving a budget by ID
+        Task<IEnumerable<Budget>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken = default); // SRP: Handles only retrieving budgets for a user
     }
 }

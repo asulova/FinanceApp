@@ -35,7 +35,7 @@ namespace FinanceApp.Api.Controllers
             var result = await _mediator.Send(command, cancellationToken);
             // Result Pattern: Return success or error based on Result<T>
             if (result.Success)
-                return CreatedAtAction(nameof(Create), new { id = result.Data }, result);
+                return CreatedAtAction(nameof(Create), new { id = result.Data }, result.Data);
             return BadRequest(result.Message);
         }
 
@@ -65,6 +65,12 @@ namespace FinanceApp.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
         {
+            // Get userId from claims (assumes authentication is in place)
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+            {
+                return Unauthorized();
+            }
             var result = await _mediator.Send(new GetBudgetByIdQuery(id), cancellationToken);
             // Result Pattern: Return success or error based on Result<T>
             if (result.Success)
