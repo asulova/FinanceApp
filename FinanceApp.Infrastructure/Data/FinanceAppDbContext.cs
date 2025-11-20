@@ -13,6 +13,7 @@ public class FinanceAppDbContext : DbContext
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Transaction> Transactions { get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;
+    public DbSet<Budget> Budgets { get; set; } = null!; // Repository Pattern: DbSet for Budget entity
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -56,6 +57,16 @@ public class FinanceAppDbContext : DbContext
                   .WithMany()
                   .HasForeignKey(t => t.CategoryId)
                   .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // Configure Budget entity
+        modelBuilder.Entity<Budget>(entity =>
+        {
+            entity.HasKey(b => b.Id);
+            entity.Property(b => b.UserId).IsRequired();
+            entity.Property(b => b.Amount).IsRequired().HasPrecision(18, 2);
+            entity.Property(b => b.PeriodStart).IsRequired();
+            entity.Property(b => b.PeriodEnd).IsRequired();
         });
     }
 }
