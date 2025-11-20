@@ -20,7 +20,7 @@ namespace FinanceApp.Api.Services
             get
             {
                 var userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                return userId != null ? Guid.Parse(userId) : (Guid?)null;
+                return Guid.TryParse(userId, out var guid) ? guid : (Guid?)null;
             }
         }
     }
