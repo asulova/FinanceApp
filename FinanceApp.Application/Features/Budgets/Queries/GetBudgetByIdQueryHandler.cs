@@ -21,7 +21,7 @@ namespace FinanceApp.Application.Features.Budgets.Queries
 
         public async Task<Result<BudgetDto>> Handle(GetBudgetByIdQuery request, CancellationToken cancellationToken)
         {
-            var budget = await _budgetRepository.GetByIdAsync(request.BudgetId);
+            var budget = await _budgetRepository.GetByIdAsync(request.BudgetId, cancellationToken);
             if (budget == null)
                 return Result<BudgetDto>.Failure("Budget not found.");
 

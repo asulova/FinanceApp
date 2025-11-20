@@ -23,7 +23,7 @@ namespace FinanceApp.Application.Features.Budgets.Queries
 
         public async Task<Result<IEnumerable<BudgetDto>>> Handle(GetBudgetsByUserQuery request, CancellationToken cancellationToken)
         {
-            var budgets = await _budgetRepository.GetByUserIdAsync(request.UserId);
+            var budgets = await _budgetRepository.GetByUserIdAsync(request.UserId, cancellationToken);
             if (budgets == null || !budgets.Any())
                 return Result<IEnumerable<BudgetDto>>.SuccessResult(Enumerable.Empty<BudgetDto>(), "No budgets found for this user.");
 

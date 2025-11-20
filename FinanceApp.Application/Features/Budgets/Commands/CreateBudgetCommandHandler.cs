@@ -13,11 +13,11 @@ namespace FinanceApp.Application.Features.Budgets.Commands
     // OCP: Can be extended for new budget creation logic
     public class CreateBudgetCommandHandler : IRequestHandler<CreateBudgetCommand, Result<int>>
     {
-        private readonly IBudgetRepository _budgetRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserService _currentUserService;
-        public CreateBudgetCommandHandler(IBudgetRepository budgetRepository, ICurrentUserService currentUserService)
+        public CreateBudgetCommandHandler(IUnitOfWork unitOfWork, ICurrentUserService currentUserService)
         {
-            _budgetRepository = budgetRepository;
+            _unitOfWork = unitOfWork;
             _currentUserService = currentUserService;
         }
 
@@ -26,6 +26,7 @@ namespace FinanceApp.Application.Features.Budgets.Commands
             var userId = _currentUserService.UserId;
             if (userId == null)
                 return Result<int>.Failure("Authenticated user not found.");
+
             var budget = new Budget
             {
                 UserId = userId.Value,
@@ -33,8 +34,10 @@ namespace FinanceApp.Application.Features.Budgets.Commands
                 PeriodStart = request.PeriodStart,
                 PeriodEnd = request.PeriodEnd
             };
-            await _budgetRepository.AddAsync(budget);
-            // Defensive: Check if Id is set, otherwise return failure
+
+            await _unitOfWork.Budgets.AddAsync(budget, cancellationToken);
+            await _unitOfWork.CommitAsync(cancellationToken);
+
             return budget.Id > 0
                 ? Result<int>.SuccessResult(budget.Id, "Budget created successfully.")
                 : Result<int>.Failure("Failed to create budget.");
