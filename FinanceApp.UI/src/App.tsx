@@ -11,7 +11,7 @@ import { CategoriesListPage } from './features/categories/pages/CategoriesListPa
 import { EditCategoryPage } from './features/categories/pages/EditCategoryPage';
 import { BudgetsListPage } from './features/budgets/pages/BudgetsListPage';
 import { AddBudgetForm } from './features/budgets/pages/AddBudgetPage';
-import { BudgetDetailsPage } from './features/budgets/pages/BudgetDetailsPage';
+import { BudgetVsActualPage } from './features/budgets/pages/BudgetVsActualPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(() => {
@@ -79,7 +79,7 @@ function App() {
           <Route path="/categories/edit/:id" element={<EditCategoryPage />} />
           <Route path="/budgets" element={<BudgetsListPage />} />
           <Route path="/budgets/add" element={<AddBudgetForm />} />
-          <Route path="/budgets/:id" element={<BudgetDetailsPage />} />
+          <Route path="/budgets/:id/vs-actual" element={<BudgetVsActualPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Box>

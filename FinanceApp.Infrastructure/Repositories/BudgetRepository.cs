@@ -50,5 +50,18 @@ namespace FinanceApp.Infrastructure.Repositories
                 .Where(b => b.UserId == userId)
                 .ToListAsync(cancellationToken);
         }
+
+        public async Task<Budget?> GetByUserAndPeriodAsync(Guid userId, DateTime periodStart, DateTime periodEnd, CancellationToken cancellationToken = default)
+        {
+            // Find a budget that covers the specified period
+            // Budget matches if the period overlaps with the budget's period
+            return await _context.Budgets
+                .AsNoTracking()
+                .Where(b => b.UserId == userId 
+                    && b.PeriodStart <= periodEnd 
+                    && b.PeriodEnd >= periodStart)
+                .OrderByDescending(b => b.PeriodStart) // Get the most recent budget if multiple exist
+                .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

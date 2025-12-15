@@ -77,5 +77,27 @@ namespace FinanceApp.Api.Controllers
                 return Ok(result.Data);
             return NotFound(result.Message);
         }
+
+        /// <summary>
+        /// Gets budget vs actual spending comparison for a specific budget.
+        /// Shows overall budget status and category-wise spending breakdown.
+        /// Period dates are derived from the budget entity.
+        /// </summary>
+        /// <param name="id">Budget ID</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Budget vs actual comparison data with category breakdown</returns>
+        [HttpGet("{id}/vs-actual")]
+        public async Task<IActionResult> GetBudgetVsActual(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            var query = new GetBudgetVsActualQuery(id);
+            var result = await _mediator.Send(query, cancellationToken);
+
+            // Result Pattern: Return success or error based on Result<T>
+            if (result.Success)
+                return Ok(result.Data);
+            return BadRequest(result.Message);
+        }
     }
 }

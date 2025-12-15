@@ -1,4 +1,4 @@
-import type { Budget } from '../types';
+import type { Budget, BudgetVsActual } from '../types';
 import api from '../../../config/axiosConfig';
 import { API_URL } from '../../../config';
 
@@ -34,3 +34,21 @@ export async function getBudgetById(id: number, token: string) {
   });
   return response.data;
 }
+
+export async function getBudgetVsActual(
+  budgetId: number,
+  token: string
+): Promise<BudgetVsActual> {
+  // GET: Retrieve budget vs actual comparison for a specific budget
+  // Period dates are derived from the budget entity (not passed as parameters)
+  // Result Pattern: Expects a result object from backend
+  const response = await api.get(
+    `${API_URL}/api/budgets/${budgetId}/vs-actual`,
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  );
+  return response.data;
+}
+
+

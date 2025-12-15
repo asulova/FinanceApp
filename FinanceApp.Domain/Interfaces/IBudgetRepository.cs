@@ -14,5 +14,11 @@ namespace FinanceApp.Domain.Interfaces
         Task DeleteAsync(int budgetId, CancellationToken cancellationToken = default); // SRP: Handles only deleting a budget
         Task<Budget?> GetByIdAsync(int budgetId, CancellationToken cancellationToken = default); // SRP: Handles only retrieving a budget by ID
         Task<IEnumerable<Budget>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken = default); // SRP: Handles only retrieving budgets for a user
+        
+        /// <summary>
+        /// Gets a budget for a specific user and period.
+        /// Used for Budget vs Actual feature to find the budget covering a specific time range.
+        /// </summary>
+        Task<Budget?> GetByUserAndPeriodAsync(Guid userId, DateTime periodStart, DateTime periodEnd, CancellationToken cancellationToken = default);
     }
 }
