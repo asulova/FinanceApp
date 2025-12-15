@@ -56,5 +56,20 @@ namespace FinanceApp.Infrastructure.Repositories
         {
             return await _context.Transactions.CountAsync(t => t.UserId == userId, cancellationToken);
         }
+
+        public async Task<Dictionary<int, decimal>> GetSpendingByCategoryAsync(Guid userId, DateTime periodStart, DateTime periodEnd, CancellationToken cancellationToken = default)
+        {
+            // Get all EXPENSE transactions for the user within the specified period
+            // Group by CategoryId and sum the amounts
+            return await _context.Transactions
+                .AsNoTracking()
+                .Where(t => t.UserId == userId 
+                    && t.Type == Domain.Constants.TransactionTypes.EXPENSE
+                    && t.Date >= periodStart 
+                    && t.Date <= periodEnd)
+                .GroupBy(t => t.CategoryId)
+                .Select(g => new { CategoryId = g.Key, TotalAmount = g.Sum(t => t.Amount) })
+                .ToDictionaryAsync(x => x.CategoryId, x => x.TotalAmount, cancellationToken);
+        }
     }
 }

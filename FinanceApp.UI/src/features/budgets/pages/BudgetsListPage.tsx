@@ -71,17 +71,28 @@ export const BudgetsListPage: React.FC = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Period Start</TableCell>
-                  <TableCell>Period End</TableCell>
+                  <TableCell sx={{ fontWeight: 700 }}>Amount</TableCell>
+                  <TableCell sx={{ fontWeight: 700 }}>Period Start</TableCell>
+                  <TableCell sx={{ fontWeight: 700 }}>Period End</TableCell>
+                  <TableCell align="right" sx={{ fontWeight: 700 }}>Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {budgets.map((budget) => (
                   <TableRow key={budget.id}>
-                    <TableCell>{budget.amount}</TableCell>
+                    <TableCell sx={{ fontWeight: 600 }}>${budget.amount.toFixed(2)}</TableCell>
                     <TableCell>{budget.periodStart}</TableCell>
                     <TableCell>{budget.periodEnd}</TableCell>
+                    <TableCell align="right">
+                      <Button
+                        variant="contained"
+                        size="small"
+                        onClick={() => navigate(`/budgets/${budget.id}/vs-actual`)}
+                        sx={{ minWidth: 100 }}
+                      >
+                        Details
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

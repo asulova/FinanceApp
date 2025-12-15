@@ -17,5 +17,13 @@ namespace FinanceApp.Domain.Interfaces
         /// Gets the total count of transactions for a specific user.
         /// </summary>
         Task<int> CountByUserAsync(Guid userId, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Gets spending grouped by category for a specific user and period.
+        /// Only includes EXPENSE transactions.
+        /// Returns a dictionary where key is CategoryId and value is the total amount spent.
+        /// Used for Budget vs Actual feature to calculate category-wise spending.
+        /// </summary>
+        Task<Dictionary<int, decimal>> GetSpendingByCategoryAsync(Guid userId, DateTime periodStart, DateTime periodEnd, CancellationToken cancellationToken = default);
     }
 }

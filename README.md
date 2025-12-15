@@ -66,7 +66,14 @@ FinanceApp.UI/
    - Update Transaction  
    - Delete Transaction  
 
-5. **Reports**  
+5. **Budgeting**
+   - Set a monthly budget for each spending category
+   - View budget vs actual spending for each category
+   - Receive notifications when close to exceeding budget
+   - Edit or delete budgets for any category
+   - See a summary of all budgets and spending on the dashboard
+
+6. **Reports**  
    - Monthly income vs expenses chart  
    - Top 5 categories spending  
 
