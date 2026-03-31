@@ -100,11 +100,7 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    // Use Microsoft's built-in OpenAPI endpoint
-    app.MapOpenApi();
-}
+app.MapOpenApi();
 
 app.UseHttpsRedirection();
 
