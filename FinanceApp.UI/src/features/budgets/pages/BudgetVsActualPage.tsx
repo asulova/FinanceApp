@@ -22,7 +22,6 @@ import {
   TableRow,
   Paper,
   Tooltip,
-  Container,
   Stack,
 } from '@mui/material';
 import {
@@ -86,7 +85,7 @@ export const BudgetVsActualPage: React.FC = () => {
     }
   };
 
-  const getStatusIcon = (status: string) => {
+  const getStatusIcon = (status: string): React.ReactElement | undefined => {
     switch (status) {
       case 'Under Budget':
         return <CheckCircleIcon />;
@@ -95,7 +94,7 @@ export const BudgetVsActualPage: React.FC = () => {
       case 'Over Budget':
         return <ErrorIcon />;
       default:
-        return null;
+        return undefined;
     }
   };
 
