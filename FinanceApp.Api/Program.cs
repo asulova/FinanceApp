@@ -18,8 +18,12 @@ builder.Services.AddDbContext<FinanceAppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register repositories and unit of work
+// Register BudgetRepository for IBudgetRepository
+// DIP: Dependency Inversion Principle - Register abstraction and implementation for DI
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IBudgetRepository, BudgetRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Register Application Layer services (MediatR, AutoMapper, etc.)
@@ -27,7 +31,6 @@ builder.Services.AddApplicationServices();
 
 // Register JwtTokenService
 builder.Services.AddSingleton<JwtTokenService>();
-
 
 // Add Controllers
 builder.Services.AddControllers();
@@ -97,11 +100,7 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    // Use Microsoft's built-in OpenAPI endpoint
-    app.MapOpenApi();
-}
+app.MapOpenApi();
 
 app.UseHttpsRedirection();
 

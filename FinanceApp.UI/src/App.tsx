@@ -9,6 +9,9 @@ import './App.css';
 import { AddCategoryForm } from './features/categories/pages/AddCategoryPage';
 import { CategoriesListPage } from './features/categories/pages/CategoriesListPage';
 import { EditCategoryPage } from './features/categories/pages/EditCategoryPage';
+import { BudgetsListPage } from './features/budgets/pages/BudgetsListPage';
+import { AddBudgetForm } from './features/budgets/pages/AddBudgetPage';
+import { BudgetVsActualPage } from './features/budgets/pages/BudgetVsActualPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(() => {
@@ -51,6 +54,7 @@ function App() {
               <>
                 <Button color="inherit" component={Link} to="/transactions">Transactions</Button>
                 <Button color="inherit" component={Link} to="/categories">Categories</Button>
+                <Button color="inherit" component={Link} to="/budgets">Budgets</Button>
                 <Button color="inherit" component={Link} to="/users">Users</Button>
                 <Button color="inherit" onClick={handleLogout}>Logout</Button>
               </>
@@ -73,6 +77,9 @@ function App() {
           <Route path="/categories" element={<CategoriesListPage />} />
           <Route path="/categories/add" element={<AddCategoryForm />} />
           <Route path="/categories/edit/:id" element={<EditCategoryPage />} />
+          <Route path="/budgets" element={<BudgetsListPage />} />
+          <Route path="/budgets/add" element={<AddBudgetForm />} />
+          <Route path="/budgets/:id/vs-actual" element={<BudgetVsActualPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Box>
