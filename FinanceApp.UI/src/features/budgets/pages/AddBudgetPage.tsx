@@ -10,7 +10,7 @@ import { Box, TextField, Button, Typography, Paper, Alert, CircularProgress } fr
 // DRY: Reuses Material UI components and form logic
 // Separation of Concerns: API logic is imported from api/budgetApi
 
-const initialForm: Omit<Budget, 'id'> = {
+const initialForm: Omit<Budget, 'id' | 'userId'> = {
   amount: 0,
   periodStart: '',
   periodEnd: ''

@@ -8,7 +8,7 @@ import { API_URL } from '../../../config';
 // DRY: Centralizes all budget-related API logic
 // Separation of Concerns: Keeps API logic out of UI components
 
-export async function createBudget(budget: Budget, token: string) {
+export async function createBudget(budget: Omit<Budget, 'id' | 'userId'>, token: string) {
   // POST: Create a new budget
   // Result Pattern: Expects a result object from backend
   const response = await api.post(`${API_URL}/api/budgets`, budget, {
